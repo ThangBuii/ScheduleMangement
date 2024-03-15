@@ -17,7 +17,7 @@ namespace PRN221_ASSIGNMENT.Models
         }
 
         public virtual DbSet<Building> Buildings { get; set; } = null!;
-        public virtual DbSet<Class> Classes { get; set; } = null!;
+        public virtual DbSet<GroupClass> GroupClasses { get; set; } = null!;
         public virtual DbSet<Room> Rooms { get; set; } = null!;
         public virtual DbSet<Schedule> Schedules { get; set; } = null!;
         public virtual DbSet<Slot> Slots { get; set; } = null!;
@@ -29,8 +29,7 @@ namespace PRN221_ASSIGNMENT.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-                optionsBuilder.UseSqlServer(config.GetConnectionString("ScheduleManagement"));
+                optionsBuilder.UseSqlServer("server=(local); database = ScheduleManagement; uid=sa;pwd=1234");
             }
         }
 
@@ -49,7 +48,7 @@ namespace PRN221_ASSIGNMENT.Models
                     .HasColumnName("details");
             });
 
-            modelBuilder.Entity<Class>(entity =>
+            modelBuilder.Entity<GroupClass>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("id");
 

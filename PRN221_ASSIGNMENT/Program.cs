@@ -6,12 +6,11 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<ScheduleManagementContext>(
     opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("ScheduleManagement")));
 
-//tao ra app theo thong tin trong builder
 var app = builder.Build();
 
-//routing theo nguyen tac razor page
-
-
+app.UseStaticFiles();
+app.UseRouting();
+app.UseAuthorization();
 app.MapRazorPages();
 
 

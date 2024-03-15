@@ -31,7 +31,7 @@ namespace PRN221_ASSIGNMENT.Service
             Schedule1.SubjectId = _context.Subjects.FirstOrDefault(s => s.Code == data.Subject).Id;
             Schedule2.SubjectId = Schedule1.SubjectId;
             
-            Schedule1.ClassId = _context.Classes.FirstOrDefault(c => c.Code == data.Class).Id;
+            Schedule1.ClassId = _context.GroupClasses.FirstOrDefault(c => c.Code == data.Class).Id;
             Schedule2.ClassId = Schedule1.ClassId;
 
             if (data.TimeSlot[0] == 'A')
@@ -75,7 +75,7 @@ namespace PRN221_ASSIGNMENT.Service
         {
             if (_context.Teachers.FirstOrDefault(t => t.Code == data.Teacher) == null) return false;
             if (_context.Subjects.FirstOrDefault(t => t.Code == data.Subject) == null) return false;
-            if (_context.Classes.FirstOrDefault(t => t.Code == data.Class) == null) return false;
+            if (_context.GroupClasses.FirstOrDefault(t => t.Code == data.Class) == null) return false;
             if (_context.Rooms.FirstOrDefault(t => t.Code == data.Room) == null) return false;
             if(slotService.CheckExists(data.TimeSlot)) return false;
 

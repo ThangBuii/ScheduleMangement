@@ -18,10 +18,106 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Thang FPTU\Kì 6\PRN221\PRN221_ASSIGNMENT\PRN221_ASSIGNMENT
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/GroupClass/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JvdXBDbGFzc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/GroupClass/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JvdXBDbGFzc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/GroupClass/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JvdXBDbGFzc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/GroupClass/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JvdXBDbGFzc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/GroupClass/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JvdXBDbGFzc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Room/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Room/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbVxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Room/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbVxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Room/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Room/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Schedule/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2NoZWR1bGVcQWRkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Subject/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Subject/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdFxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Subject/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdFxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Subject/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Subject/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Teacher/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Teacher/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Teacher/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Teacher/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Teacher/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

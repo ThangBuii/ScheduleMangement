@@ -13,7 +13,7 @@ namespace PRN221_ASSIGNMENT.Models
         public int SlotId { get; set; }
         public DateTime Date { get; set; }
 
-        public virtual Class Class { get; set; } = null!;
+        public virtual GroupClass Class { get; set; } = null!;
         public virtual Room Room { get; set; } = null!;
         public virtual Slot Slot { get; set; } = null!;
         public virtual Subject Subject { get; set; } = null!;
