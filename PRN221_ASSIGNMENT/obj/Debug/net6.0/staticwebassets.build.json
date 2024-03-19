@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tNFEZNUiuOuPcWZ1fC+VS1heVJw6TeN5hE9ESGiDF9s=",
+  "Hash": "JG4FlAL7nJxhZU2f21m0LrdzZRbSH6tMrLglR0dDQjk=",
   "Source": "PRN221_ASSIGNMENT",
   "BasePath": "_content/PRN221_ASSIGNMENT",
   "Mode": "Default",
@@ -3834,6 +3834,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\scss\\vendor\\_rfs.scss"
+    },
+    {
+      "Identity": "D:\\Thang FPTU\\Kì 6\\PRN221\\PRN221_ASSIGNMENT\\PRN221_ASSIGNMENT\\wwwroot\\uploads\\Schedule.csv",
+      "SourceId": "PRN221_ASSIGNMENT",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Thang FPTU\\Kì 6\\PRN221\\PRN221_ASSIGNMENT\\PRN221_ASSIGNMENT\\wwwroot\\",
+      "BasePath": "_content/PRN221_ASSIGNMENT",
+      "RelativePath": "uploads/Schedule.csv",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\Schedule.csv"
     }
   ]
 }

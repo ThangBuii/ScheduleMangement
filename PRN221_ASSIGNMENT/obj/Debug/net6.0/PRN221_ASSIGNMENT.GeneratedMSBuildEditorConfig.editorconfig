@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Thang FPTU\Kì 6\PRN221\PRN221_ASSIGNMENT\PRN221_ASSIGNMENT
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/AdminPanel/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5QYW5lbFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/GroupClass/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JvdXBDbGFzc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -62,8 +66,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Schedule/Add.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2NoZWR1bGVcQWRkLmNzaHRtbA==
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Schedule/AddCSV.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2NoZWR1bGVcQWRkQ1NWLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Schedule/AddManually.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2NoZWR1bGVcQWRkTWFudWFsbHkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Schedule/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2NoZWR1bGVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Thang FPTU/Kì 6/PRN221/PRN221_ASSIGNMENT/PRN221_ASSIGNMENT/Pages/Shared/_Layout.cshtml]

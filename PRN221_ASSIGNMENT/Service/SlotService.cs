@@ -6,7 +6,7 @@ namespace PRN221_ASSIGNMENT.Service
     public class SlotService
     {
         private string[] validSlots = { "A24", "A35", "A46", "A52", "A63", "P23", "P35", "P46", "P53", "P63" };
-        private static DateTime InitialDate = new DateTime(2024, 04, 28);
+        private static DateTime InitialDate = new DateTime(2024, 04, 29);
         private ScheduleManagementContext _context;
         public SlotService(ScheduleManagementContext context)
         {
@@ -15,7 +15,11 @@ namespace PRN221_ASSIGNMENT.Service
 
         public bool CheckExists(string slotName)
         {
-            return Array.IndexOf(validSlots, slotName) != -1;
+            foreach (var slot in validSlots)
+            {
+                if (slotName.Equals(slot)) return true;
+            }
+            return false;
         }
 
         public DateTime FindInitialDate(char date)

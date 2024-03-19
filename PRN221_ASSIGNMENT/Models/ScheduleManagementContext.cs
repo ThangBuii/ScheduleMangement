@@ -77,6 +77,18 @@ namespace PRN221_ASSIGNMENT.Models
             {
                 entity.ToTable("Schedule");
 
+                entity.HasIndex(e => new { e.Date, e.ClassId, e.SubjectId }, "uc_date_class_subject")
+                    .IsUnique();
+
+                entity.HasIndex(e => new { e.Date, e.SlotId, e.ClassId }, "uc_date_slot_class")
+                    .IsUnique();
+
+                entity.HasIndex(e => new { e.Date, e.SlotId, e.RoomId }, "uc_date_slot_room")
+                    .IsUnique();
+
+                entity.HasIndex(e => new { e.Date, e.SlotId, e.TeacherId }, "uc_date_slot_teacher")
+                    .IsUnique();
+
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.ClassId).HasColumnName("classId");

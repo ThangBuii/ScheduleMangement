@@ -1,0 +1,48 @@
+﻿@page
+@model PRN221_ASSIGNMENT.Pages.Schedule.AddManuallyModel
+@{
+}
+
+<div>
+    <h1>Add Manually</h1>
+    <h3>Please fill in this form</h3>
+    <form method="post">
+        <label>Class</label>
+        <input type="text" name="Class" asp-for="FormData.Class"/>
+        <select>
+            
+        </select>
+        <br />
+        <label>Subject</label>
+        <input type="text" name="Subject" asp-for="FormData.Subject" />
+        <br />
+        <label>Room</label>
+        <input type="text" name="Room" asp-for="FormData.Room" />
+        <br />
+        <label>Teacher</label>
+        <input type="text" name="Teacher" asp-for="FormData.Teacher" />
+        <br />
+        <label>TimeSlot</label>
+        <input type="text" name="TimeSlot" asp-for="FormData.TimeSlot" />
+        <br />
+        <button type="submit">Submit</button>
+    </form>
+
+    <div>
+        @if (ViewData["Messages"] != null)
+        {
+            <h2>Results:</h2>
+            <ul>
+                @if (ViewData["Messages"] == "Saved successfully!")
+                {
+                    <p style="color:forestgreen">@ViewData["Messages"]</p>
+                }
+                else
+                {
+                    <p style="color:red">@ViewData["Messages"]</p>
+                }
+            </ul>
+        }
+    </div>
+</div>
+

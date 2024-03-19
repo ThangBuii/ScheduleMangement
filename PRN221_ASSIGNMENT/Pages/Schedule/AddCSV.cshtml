@@ -1,0 +1,88 @@
+﻿@page
+@model PRN221_ASSIGNMENT.Pages.Schedule.AddModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    int i = 1;
+}
+<style>
+    a {
+        text-decoration: none;
+    }
+
+    h2 {
+        color: darkslateblue;
+    }
+
+    .container-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .forms {
+        display: flex;
+    }
+
+        .forms > div {
+            margin-right: 40px;
+            margin-left:40px;/* Adjust as needed */
+        }
+
+    .result {
+        margin-top: 20px; /* Adjust as needed */
+    }
+</style>
+
+<button>
+    <a href="/Schedule">Back</a>
+</button>
+
+
+<div class="container-form">
+    <div class="forms">
+        <div>
+            <h2>Import full schedule from CSV:</h2>
+            <p style="color:darkred">This will delete all the data existed in Schedule table</p>
+            <form method="post" enctype="multipart/form-data" asp-page-handler="Import">
+                <input type="file" name="csvFile" />
+                <br />
+                <input type="submit" value="Import" />
+            </form>
+        </div>
+        <div>
+            <h2>Add from CSV:</h2>
+            <p style="color:darkred">Add data in Schedule table</p>
+            <form method="post" enctype="multipart/form-data" asp-page-handler="Add">
+                <input type="file" name="csvFile" />
+                <br />
+                <input type="submit" value="Add" />
+            </form>
+        </div>
+    </div>
+
+    <div class="result">
+        @if (ViewData["Messages"] != null)
+        {
+            <h2>Import Results:</h2>
+            <ul>
+                @foreach (var message in (List<string>)ViewData["Messages"])
+                {
+                    @if (message == "Saved successfully!")
+                    {
+                        <li style="color:forestgreen">Line @i: @message</li>
+                    }
+                    else
+                    {
+                        <li style="color:red">Line @i: @message</li>
+                    }
+                    i++;
+                }
+            </ul>
+        }
+    </div>
+</div>
+
+
+
+

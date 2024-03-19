@@ -22,9 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Config\" />
-    <Folder Include="wwwroot\" />
     <Folder Include="Repository\" />
+    <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
 </Project>
