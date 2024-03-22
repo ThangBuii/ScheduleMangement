@@ -1,14 +1,13 @@
-﻿@page
-@model PRN221_ASSIGNMENT.Pages.Schedule.AddManuallyModel
+﻿@page "{id:int?}"
+@model PRN221_ASSIGNMENT.Pages.Schedule.EditModel
 @{
 }
-
 <div>
-    <h1>Add Manually</h1>
+    <h1>Edit Schedule</h1>
     <h3>Please fill in this form</h3>
     <form method="post">
         <label>Class</label>
-        
+
         <select asp-for="FormData.Class">
             @foreach (var r in Model.Classes)
             {
@@ -17,7 +16,7 @@
         </select>
         <br />
         <label>Subject</label>
-        
+
         <select asp-for="FormData.Subject">
             @foreach (var r in Model.Subjects)
             {
@@ -69,4 +68,3 @@
         }
     </div>
 </div>
-

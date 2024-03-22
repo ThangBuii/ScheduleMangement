@@ -4,7 +4,7 @@ namespace PRN221_ASSIGNMENT.DTO
 {
     public class ScheduleDTO
     {
-        public Schedule Schedule1 { get; set; }
-        public Schedule Schedule2 { get; set; }
+        public ScheduleDetail Schedule1 { get; set; }
+        public ScheduleDetail Schedule2 { get; set; }
     }
 }

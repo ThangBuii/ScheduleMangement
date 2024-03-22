@@ -20,7 +20,9 @@ namespace PRN221_ASSIGNMENT.Models
         public virtual DbSet<GroupClass> GroupClasses { get; set; } = null!;
         public virtual DbSet<Room> Rooms { get; set; } = null!;
         public virtual DbSet<Schedule> Schedules { get; set; } = null!;
+        public virtual DbSet<ScheduleDetail> ScheduleDetails { get; set; } = null!;
         public virtual DbSet<Slot> Slots { get; set; } = null!;
+        public virtual DbSet<SlotTemplate> SlotTemplates { get; set; } = null!;
         public virtual DbSet<Subject> Subjects { get; set; } = null!;
         public virtual DbSet<Teacher> Teachers { get; set; } = null!;
 
@@ -77,29 +79,13 @@ namespace PRN221_ASSIGNMENT.Models
             {
                 entity.ToTable("Schedule");
 
-                entity.HasIndex(e => new { e.Date, e.ClassId, e.SubjectId }, "uc_date_class_subject")
-                    .IsUnique();
-
-                entity.HasIndex(e => new { e.Date, e.SlotId, e.ClassId }, "uc_date_slot_class")
-                    .IsUnique();
-
-                entity.HasIndex(e => new { e.Date, e.SlotId, e.RoomId }, "uc_date_slot_room")
-                    .IsUnique();
-
-                entity.HasIndex(e => new { e.Date, e.SlotId, e.TeacherId }, "uc_date_slot_teacher")
-                    .IsUnique();
-
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.ClassId).HasColumnName("classId");
 
-                entity.Property(e => e.Date)
-                    .HasColumnType("datetime")
-                    .HasColumnName("date");
-
                 entity.Property(e => e.RoomId).HasColumnName("roomId");
 
-                entity.Property(e => e.SlotId).HasColumnName("slotId");
+                entity.Property(e => e.SlotTemplateId).HasColumnName("slotTemplateId");
 
                 entity.Property(e => e.SubjectId).HasColumnName("subjectId");
 
@@ -117,11 +103,10 @@ namespace PRN221_ASSIGNMENT.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("schedule_roomid_foreign");
 
-                entity.HasOne(d => d.Slot)
+                entity.HasOne(d => d.SlotTemplate)
                     .WithMany(p => p.Schedules)
-                    .HasForeignKey(d => d.SlotId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("schedule_timeslotid_foreign");
+                    .HasForeignKey(d => d.SlotTemplateId)
+                    .HasConstraintName("FK_Schedule_SlotTemplate");
 
                 entity.HasOne(d => d.Subject)
                     .WithMany(p => p.Schedules)
@@ -136,6 +121,29 @@ namespace PRN221_ASSIGNMENT.Models
                     .HasConstraintName("schedule_teacherid_foreign");
             });
 
+            modelBuilder.Entity<ScheduleDetail>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Date)
+                    .HasColumnType("date")
+                    .HasColumnName("date");
+
+                entity.Property(e => e.ScheduleId).HasColumnName("scheduleId");
+
+                entity.Property(e => e.SlotId).HasColumnName("slotId");
+
+                entity.HasOne(d => d.Schedule)
+                    .WithMany(p => p.ScheduleDetails)
+                    .HasForeignKey(d => d.ScheduleId)
+                    .HasConstraintName("FK__ScheduleD__sched__66603565");
+
+                entity.HasOne(d => d.Slot)
+                    .WithMany(p => p.ScheduleDetails)
+                    .HasForeignKey(d => d.SlotId)
+                    .HasConstraintName("FK__ScheduleD__slotI__6754599E");
+            });
+
             modelBuilder.Entity<Slot>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -147,6 +155,22 @@ namespace PRN221_ASSIGNMENT.Models
                 entity.Property(e => e.SlotName)
                     .HasMaxLength(255)
                     .HasColumnName("slotName");
+            });
+
+            modelBuilder.Entity<SlotTemplate>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("id");
+
+                entity.Property(e => e.Code)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("code");
+
+                entity.Property(e => e.Detail)
+                    .IsUnicode(false)
+                    .HasColumnName("detail");
             });
 
             modelBuilder.Entity<Subject>(entity =>

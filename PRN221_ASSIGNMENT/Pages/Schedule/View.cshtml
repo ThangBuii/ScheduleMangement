@@ -1,0 +1,70 @@
+﻿@page
+@model PRN221_ASSIGNMENT.Pages.Schedule.ViewModel
+@{
+}
+
+<style>
+    .schedule-table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    a{
+        text-decoration: none;
+        color: black;
+        
+    }
+        .schedule-table th, .schedule-table td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .schedule-table th {
+            background-color: #f2f2f2;
+        }
+
+        .schedule-table td .btn-container {
+            display: flex;
+        }
+
+            .schedule-table td .btn-container button {
+                margin-right: 5px;
+            }
+</style>
+
+<div>
+    <h1>Schedule List</h1>
+    <table class="schedule-table">
+        <tr>
+            <th>ScheduleId</th>
+            <th>Class</th>
+            <th>Subject</th>
+            <th>Teacher</th>
+            <th>Room</th>
+            <th>Slot</th>
+            <th></th>
+        </tr>
+        @foreach (var p in Model.Schedules)
+        {
+            <tr>
+                <td>@p.Id</td>
+                <td>@p.Class.Code</td>
+                <td>@p.Subject.Code</td>
+                <td>@p.Teacher.Code</td>
+                <td>@(p.Room?.Building?.Code + "-" + p.Room?.Code)</td>
+                <td>@p.SlotTemplate?.Code</td>
+                <td>
+                    <div class="btn-container">
+                        <button>
+                            <a href="/Schedule/Edit?id=@p.Id">Edit</a>
+                        </button>
+                        <form method="post">
+                            <button type="submit" name="ScheduleId" value="@p.Id">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

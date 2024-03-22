@@ -16,27 +16,14 @@ namespace PRN221_ASSIGNMENT.Service
             _context = context;
             slotService = new SlotService(_context);
         }
-        private ScheduleDTO GetInitialData(CsvData data)
+        private ScheduleDTO GetInitialData(CsvData data,int id)
         {
-            string[] roomParts = data.Room.Split('-');
-            string buildingCode = roomParts[0];
-            string roomCode = roomParts[1];
 
-            Schedule Schedule1 = new Schedule();
-            Schedule Schedule2 = new Schedule();
+            ScheduleDetail Schedule1 = new ScheduleDetail();
+            ScheduleDetail Schedule2 = new ScheduleDetail();
 
-            Schedule1.TeacherId = _context.Teachers.FirstOrDefault(t => t.Code == data.Teacher).Id;
-            Schedule2.TeacherId = Schedule1.TeacherId;
-
-            Schedule1.RoomId = _context.Rooms.Include(r => r.Building)
-                                             .FirstOrDefault(r => r.Building.Code == buildingCode && r.Code == roomCode).Id;
-            Schedule2.RoomId = Schedule1.RoomId;
-
-            Schedule1.SubjectId = _context.Subjects.FirstOrDefault(s => s.Code == data.Subject).Id;
-            Schedule2.SubjectId = Schedule1.SubjectId;
-
-            Schedule1.ClassId = _context.GroupClasses.FirstOrDefault(c => c.Code == data.Class).Id;
-            Schedule2.ClassId = Schedule1.ClassId;
+            Schedule1.ScheduleId = id;
+            Schedule2.ScheduleId = id;
 
             if (data.TimeSlot[0] == 'A')
             {
@@ -59,34 +46,32 @@ namespace PRN221_ASSIGNMENT.Service
             };
         }
 
-        public List<Schedule> GetListSchedule(ScheduleDTO scheduleDTO)
+        public List<ScheduleDetail> GetListSchedule(ScheduleDTO scheduleDTO)
         {
-            List<Schedule> schedules = new List<Schedule>();
-            Schedule schedule1 = scheduleDTO.Schedule1;
-
-            Schedule schedule2 = scheduleDTO.Schedule2;
+            List<ScheduleDetail> schedules = new List<ScheduleDetail>();
+            ScheduleDetail schedule1 = scheduleDTO.Schedule1;
+            schedules.Add(schedule1);
+            ScheduleDetail schedule2 = scheduleDTO.Schedule2;
+            schedules.Add(schedule2);
 
             for (int i = 1; i < 10; i++)
             {
-                Schedule newSchedule1 = copySchedule(schedule1);
-                newSchedule1.Date = slotService.FindNextDate(i, schedule1.Date);
+                ScheduleDetail newSchedule1 = copySchedule(schedule1);
+                newSchedule1.Date = slotService.FindNextDate(i, (DateTime)schedule1.Date);
                 schedules.Add(newSchedule1);
-                Schedule newSchedule2 = copySchedule(schedule2);
-                newSchedule2.Date = slotService.FindNextDate(i, schedule2.Date);
+                ScheduleDetail newSchedule2 = copySchedule(schedule2);
+                newSchedule2.Date = slotService.FindNextDate(i, (DateTime)schedule2.Date);
                 schedules.Add(newSchedule2);
             }
 
             return schedules;
         }
 
-        private Schedule copySchedule(Schedule initial)
+        private ScheduleDetail copySchedule(ScheduleDetail initial)
         {
-            return new Schedule
+            return new ScheduleDetail
             {
-                ClassId = initial.ClassId,
-                SubjectId = initial.SubjectId,
-                RoomId = initial.RoomId,
-                TeacherId = initial.TeacherId,
+                ScheduleId = initial.ScheduleId,
                 SlotId = initial.SlotId,
                 Date = initial.Date,
             };
@@ -103,16 +88,16 @@ namespace PRN221_ASSIGNMENT.Service
             if (_context.Buildings.FirstOrDefault(t => t.Code == buildingCode) == null) return 4;
             if (_context.Rooms.Include(t => t.Building).FirstOrDefault(t => t.Building.Code == buildingCode
             && t.Code == roomCode) == null) return 4;
-            if (!slotService.CheckExists(data.TimeSlot)) return 5;
+            if (_context.SlotTemplates.FirstOrDefault(s => s.Code == data.TimeSlot)==null) return 5;
 
             return 0;
         }
 
-        public void SaveToDb(List<Schedule> schedules)
+        public void SaveToDb(List<ScheduleDetail> schedules)
         {
-            foreach (Schedule s in schedules)
+            foreach (ScheduleDetail s in schedules)
             {
-                _context.Add(s);
+                _context.ScheduleDetails.Add(s);
             }
             _context.SaveChanges();
         }
@@ -122,24 +107,18 @@ namespace PRN221_ASSIGNMENT.Service
             int messageId = IsExist(data);
             if (messageId == 0)
             {
-
-                ScheduleDTO scheduleDTO = GetInitialData(data);
-                string message = IsValid(scheduleDTO.Schedule1);
+                Schedule schedule = GetScheduleFromData(data);
+                
+                string message = IsValid(schedule);
                 if (message != "")
                 {
                     return message;
                 }
-                try
-                {
-                    _context.Schedules.Add(scheduleDTO.Schedule1);
-                    _context.Schedules.Add(scheduleDTO.Schedule2);
-                    _context.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    return FindConstraintError(scheduleDTO.Schedule1);
-                }
-                List<Schedule> schedules = GetListSchedule(scheduleDTO);
+                _context.Schedules.Add(schedule);
+                _context.SaveChanges();
+
+                ScheduleDTO scheduleDTO = GetInitialData(data,schedule.Id);
+                List<ScheduleDetail> schedules = GetListSchedule(scheduleDTO);
 
                 SaveToDb(schedules);
             }
@@ -147,23 +126,23 @@ namespace PRN221_ASSIGNMENT.Service
             {
                 if (messageId == 1)
                 {
-                    return "Teacher code do not exists";
+                    return "Teacher code do not exists!";
                 }
                 else if (messageId == 2)
                 {
-                    return "Subject code do not exists";
+                    return "Subject code do not exists!";
                 }
                 else if (messageId == 3)
                 {
-                    return "Class code do not exists";
+                    return "Class code do not exists!";
                 }
                 else if (messageId == 4)
                 {
-                    return "Room code do not exists";
+                    return "Room code do not exists!";
                 }
                 else if (messageId == 5)
                 {
-                    return "Wrong slot template!";
+                    return "Slot do not exists!";
                 }
             }
 
@@ -171,36 +150,47 @@ namespace PRN221_ASSIGNMENT.Service
             return "Saved successfully!";
         }
 
+        private Schedule GetScheduleFromData(CsvData data)
+        {
+            string[] roomParts = data.Room.Split('-');
+            string buildingCode = roomParts[0];
+            string roomCode = roomParts[1];
+            Schedule schedule = new Schedule();
+            schedule.TeacherId = _context.Teachers.FirstOrDefault(t => t.Code == data.Teacher).Id;
+
+            schedule.RoomId = _context.Rooms.Include(r => r.Building)
+                                             .FirstOrDefault(r => r.Building.Code == buildingCode && r.Code == roomCode).Id;
+
+            schedule.SubjectId = _context.Subjects.FirstOrDefault(s => s.Code == data.Subject).Id;
+
+            schedule.ClassId = _context.GroupClasses.FirstOrDefault(c => c.Code == data.Class).Id;
+            schedule.SlotTemplateId = _context.SlotTemplates.FirstOrDefault(s => s.Code == data.TimeSlot).Id;
+            return schedule;
+        }
+
         public string IsValid(Schedule schedule)
         {
             ValidationService validationService = new ValidationService(_context);
 
-            return validationService.CheckClassAndSubjectAll(schedule);
-        }
-
-        public string FindConstraintError(Schedule schedule)
-        {
-            ValidationService validationService = new ValidationService(_context);
-            string message;
-            message = validationService.CheckSlotAndRoom(schedule);
-            if (message != "") return message;
-
-            message = validationService.CheckSlotAndTeacher(schedule);
-            if (message != "") return message;
-
-            message = validationService.CheckSlotAndClass(schedule);
-            if (message != "") return message;
-
-            message = validationService.CheckClassAndSubject(schedule);
-            if (message != "") return message;
-
-            return "";
+            return validationService.ValidateSchedule(schedule);
         }
 
         public void DeleteAllData()
         {
             var allSchedules = _context.Schedules.ToList();
             _context.Schedules.RemoveRange(allSchedules);
+            var allSchedulesDetails = _context.ScheduleDetails.ToList();
+            _context.ScheduleDetails.RemoveRange(allSchedulesDetails);
+            _context.SaveChanges();
+        }
+
+        public void DeleteScheduleById(int id)
+        {
+            var allScheduleDetails = _context.ScheduleDetails.Where(s => s.ScheduleId == id).ToList();
+            _context.ScheduleDetails.RemoveRange(allScheduleDetails);
+
+            var schedule = _context.Schedules.FirstOrDefault(s => s.Id == id);
+            _context.Schedules.Remove(schedule);
             _context.SaveChanges();
         }
     }

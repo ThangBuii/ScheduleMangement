@@ -18,7 +18,7 @@ namespace PRN221_ASSIGNMENT.Pages.Schedule
         public List<Models.Teacher> Teachers { get; set; }
         public List<Models.GroupClass> Classes { get; set; }
 
-        public List<string> Slots { get; set; }
+        public List<Models.SlotTemplate> Slots { get; set; }
 
 
         public AddManuallyModel(ScheduleManagementContext context)
@@ -37,8 +37,7 @@ namespace PRN221_ASSIGNMENT.Pages.Schedule
             Subjects = _context.Subjects.ToList();
             Teachers = _context.Teachers.ToList();
             Classes = _context.GroupClasses.ToList();
-            Slots = new List<string>();
-            Slots.AddRange(new List<string> { "A24", "A35", "A46", "A52", "A63", "P24", "P35", "P46", "P52", "P63" });
+            Slots = _context.SlotTemplates.ToList();
         }
 
         public void OnPost() 

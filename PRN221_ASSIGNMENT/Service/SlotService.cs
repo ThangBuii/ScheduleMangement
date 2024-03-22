@@ -5,7 +5,7 @@ namespace PRN221_ASSIGNMENT.Service
 {
     public class SlotService
     {
-        private string[] validSlots = { "A24", "A35", "A46", "A52", "A63", "P23", "P35", "P46", "P53", "P63" };
+        private string[] validSlots = { "A24", "A35", "A46", "A52", "A63", "P23", "P35", "P46", "P52", "P63" };
         private static DateTime InitialDate = new DateTime(2024, 04, 29);
         private ScheduleManagementContext _context;
         public SlotService(ScheduleManagementContext context)
@@ -37,6 +37,69 @@ namespace PRN221_ASSIGNMENT.Service
             int dayToSkip = weekToSkip * 7;
 
             return date.AddDays(dayToSkip);
+        }
+
+        public string ConvertDateToSlot(DateTime date, int slotId)
+        {
+            string prefix="";
+            string suffix="";
+            string result;
+            DayOfWeek dayOfWeek = date.DayOfWeek;
+            if (slotId == 1 || slotId == 2)
+            {
+                prefix = "A";   
+            }
+            else
+            {
+                prefix = "P";
+            }
+
+            if (slotId == 1 || slotId == 3)
+            {
+                if (dayOfWeek == DayOfWeek.Monday)
+                {
+                    suffix = "24";
+                }
+                else if (dayOfWeek == DayOfWeek.Tuesday)
+                {
+                    suffix = "35";
+                }
+                else if (dayOfWeek == DayOfWeek.Wednesday)
+                {
+                    suffix = "46";
+                }else if (dayOfWeek == DayOfWeek.Thursday)
+                {
+                    suffix = "52";
+                }else if(dayOfWeek == DayOfWeek.Friday)
+                {
+                    suffix = "63";
+                }
+            }
+            else
+            {
+                if (dayOfWeek == DayOfWeek.Monday)
+                {
+                    suffix = "52";
+                }
+                else if (dayOfWeek == DayOfWeek.Tuesday)
+                {
+                    suffix = "63";
+                }
+                else if (dayOfWeek == DayOfWeek.Wednesday)
+                {
+                    suffix = "24";
+                }
+                else if (dayOfWeek == DayOfWeek.Thursday)
+                {
+                    suffix = "35";
+                }
+                else if (dayOfWeek == DayOfWeek.Friday)
+                {
+                    suffix = "46";
+                }
+            }
+            result = prefix + suffix;
+            return result;
         }
     }
 }
