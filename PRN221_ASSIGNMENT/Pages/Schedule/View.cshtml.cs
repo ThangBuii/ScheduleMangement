@@ -34,7 +34,7 @@ namespace PRN221_ASSIGNMENT.Pages.Schedule
 
         public void OnPost()
         {
-            DataService service = new DataService(_context);
+            ScheduleService service = new ScheduleService(_context);
             service.DeleteScheduleById(ScheduleId);
             GetData();
         }

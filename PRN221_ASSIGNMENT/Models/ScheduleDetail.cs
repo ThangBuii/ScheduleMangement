@@ -9,6 +9,7 @@ namespace PRN221_ASSIGNMENT.Models
         public DateTime? Date { get; set; }
         public int? SlotId { get; set; }
         public int Id { get; set; }
+        public bool? IsChanged { get; set; }
 
         public virtual Schedule? Schedule { get; set; }
         public virtual Slot? Slot { get; set; }

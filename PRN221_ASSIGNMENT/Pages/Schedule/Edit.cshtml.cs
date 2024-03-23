@@ -6,12 +6,15 @@ using PRN221_ASSIGNMENT.DTO;
 using PRN221_ASSIGNMENT.Mapper;
 using PRN221_ASSIGNMENT.Models;
 using PRN221_ASSIGNMENT.Service;
+using System.Drawing.Text;
 
 namespace PRN221_ASSIGNMENT.Pages.Schedule
 {
     public class EditModel : PageModel
     {
         private ScheduleManagementContext _context;
+
+
 
         public EditModel(ScheduleManagementContext context)
         {
@@ -26,6 +29,9 @@ namespace PRN221_ASSIGNMENT.Pages.Schedule
         public List<Models.GroupClass> Classes { get; set; }
 
         public List<Models.SlotTemplate> Slots { get; set; }
+
+        [BindProperty]
+        public int ScheduleId { get; set; }
         public void OnGet(int id)
         {
             GetData(id);
@@ -33,6 +39,7 @@ namespace PRN221_ASSIGNMENT.Pages.Schedule
 
         public void GetData(int id)
         {
+            ScheduleId = id;
             SlotService slotService = new SlotService(_context);
             Models.Schedule schedule = _context.Schedules
                 .Include(s => s.Class).Include(s => s.Room).ThenInclude(r => r.Building).Include(s => s.Teacher).Include(s => s.Subject).Include(s => s.SlotTemplate).FirstOrDefault(s => s.Id == id);
@@ -55,7 +62,18 @@ namespace PRN221_ASSIGNMENT.Pages.Schedule
 
         public void OnPost()
         {
+            DataService service = new DataService(_context);
 
+            string message = service.EditData(FormData,ScheduleId);
+            if (message == "Saved successfully!")
+            {
+                // Redirect to another page
+                Response.Redirect("/Schedule/View");
+            }
+
+            // If adding data failed, set ViewData and stay on the current page
+            ViewData["Messages"] = message;
+            GetData(ScheduleId);
         }
     }
 }

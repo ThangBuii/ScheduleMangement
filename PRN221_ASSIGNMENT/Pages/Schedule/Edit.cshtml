@@ -24,7 +24,7 @@
         font-weight: bold;
     }
 
-    select {
+    select,input {
         width: calc(100% - 120px); /* Adjust the width as needed */
         padding: 5px;
         margin-bottom: 10px;
@@ -87,23 +87,16 @@
     <h1>Edit Schedule</h1>
     <p>Please fill in this form</p>
     <form method="post">
+        <input type="hidden" value="@Model.ScheduleId" asp-for="ScheduleId" />
+        <input type="hidden" value="@Model.FormData.Subject" asp-for="FormData.Subject" />
+        <input type="hidden" value="@Model.FormData.Class" asp-for="FormData.Class" />
         <label>Class</label>
 
-        <select asp-for="FormData.Class">
-            @foreach (var r in Model.Classes)
-            {
-                <option value="@r.Code">@r.Code</option>
-            }
-        </select>
+        <input type="text" disabled asp-for="FormData.Class"/>
         <br />
         <label>Subject</label>
 
-        <select asp-for="FormData.Subject">
-            @foreach (var r in Model.Subjects)
-            {
-                <option value="@r.Code">@r.Code</option>
-            }
-        </select>
+        <input type="text" disabled asp-for="FormData.Subject" />
         <br />
         <label>Room</label>
         <select asp-for="FormData.Room">

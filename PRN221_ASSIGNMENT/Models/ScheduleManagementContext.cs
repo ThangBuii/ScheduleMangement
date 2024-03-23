@@ -129,6 +129,8 @@ namespace PRN221_ASSIGNMENT.Models
                     .HasColumnType("date")
                     .HasColumnName("date");
 
+                entity.Property(e => e.IsChanged).HasColumnName("isChanged");
+
                 entity.Property(e => e.ScheduleId).HasColumnName("scheduleId");
 
                 entity.Property(e => e.SlotId).HasColumnName("slotId");

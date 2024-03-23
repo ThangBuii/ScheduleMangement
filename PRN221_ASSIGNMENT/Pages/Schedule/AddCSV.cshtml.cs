@@ -23,7 +23,8 @@ namespace PRN221_ASSIGNMENT.Pages.Schedule
 
         public async void OnPostImport(IFormFile csvFile)
         {
-            DataService service = new DataService(_context);
+            ScheduleService service = new ScheduleService(_context);
+            DataService dataService = new DataService(_context);
             if (csvFile != null && csvFile.Length > 0)
             {
 
@@ -74,7 +75,7 @@ namespace PRN221_ASSIGNMENT.Pages.Schedule
 
                         for (int i = 0; i < records.Count(); i++)
                         {
-                            string message = service.AddDataToDatabase(records[i]);
+                            string message = dataService.AddDataToDatabase(records[i]);
                             messages.Add($"Line {i + 1}: " + message);
                         }
 

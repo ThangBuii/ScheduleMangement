@@ -40,13 +40,15 @@ namespace PRN221_ASSIGNMENT.Pages.Schedule
             Slots = _context.SlotTemplates.ToList();
         }
 
-        public void OnPost() 
+        public void OnPost()
         {
-            GetData();
             DataService service = new DataService(_context);
-            
             string message = service.AddDataToDatabase(FormData);
+
+            
             ViewData["Messages"] = message;
+            GetData();
+
         }
     }
 }
