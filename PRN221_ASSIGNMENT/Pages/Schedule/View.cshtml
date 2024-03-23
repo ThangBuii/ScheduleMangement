@@ -30,10 +30,68 @@
             .schedule-table td .btn-container button {
                 margin-right: 5px;
             }
+
+    .button-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 10px; /* Adjust as needed */
+    }
+
+    .add-button {
+        margin-left: 10px; /* Adjust as needed */
+    }
+
+        /* Styles for the button */
+        .button-container button {
+            padding: 8px 16px;
+        background-color: #3498db; /* Green */
+            
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none; /* Remove underlines from links */
+        }
+
+            /* Styles for the button on hover */
+        .button-container button:hover {
+            background-color: #2980b9; /* Darker green */
+            }
+
+    .btn-container button {
+        padding: 8px 16px;
+        background-color: #3498db; /* Green */
+        color: black;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none; /* Remove underlines from links */
+    }
+
+        /* Styles for the button on hover */
+        .btn-container button:hover {
+            background-color: #2980b9; /* Darker green */
+        }
+
+        h1{
+            text-align:center
+        }
 </style>
 
 <div>
+    <div class="btn-container">
+        <button class="btn-container">
+            <a href="/Schedule/">Back</a>
+        </button>
+    </div>
+    
     <h1>Schedule List</h1>
+    <div class="button-container">
+        <button class="add-button">
+            <a href="/Schedule/AddManually">Add</a>
+        </button>
+    </div>
+
+    
     <table class="schedule-table">
         <tr>
             <th>ScheduleId</th>
@@ -55,6 +113,9 @@
                 <td>@p.SlotTemplate?.Code</td>
                 <td>
                     <div class="btn-container">
+                        <button>
+                            <a href="/Schedule/ViewDetail?id=@p.Id">View Detail</a>
+                        </button>
                         <button>
                             <a href="/Schedule/Edit?id=@p.Id">Edit</a>
                         </button>

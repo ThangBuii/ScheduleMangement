@@ -4,9 +4,37 @@
 @{
 }
 
-<div>
-    <h1>Select add method</h1>
-    <a href="/Schedule/AddCSV">Add by CSV</a>
-    <a href="/Schedule/AddManually">Add by form</a>
-    <a href="/Schedule/View" >View</a>
+<style>
+    .admin {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        color: darkslateblue;
+        margin-bottom: 10px;
+    }
+
+    .link {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 0 10px;
+        color: #333;
+        text-decoration: none;
+        border: 2px solid #333;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+        .link:hover {
+            background-color: #333;
+            color: #fff;
+        }
+</style>
+
+
+<div class="admin">
+    <h2 style="text-align:center">Welcome Admin!</h2>
+    <a class="link" href="/Schedule/AddCSV" style="">Import by CSV</a>
+    <a class="link" href="/Schedule/View" style="">View Schedule</a>
 </div>

@@ -91,7 +91,8 @@ namespace PRN221_ASSIGNMENT.Service
                                         .FirstOrDefault(s =>  s.ClassId == schedule.ClassId && s.SubjectId == schedule.SubjectId);
             if (classAndSubject != null)
             {
-                return $"Data error: Class {classAndSubject.Class.Code} already have 1 slot for subject {classAndSubject.Subject.Code}";
+                return $"Data error: Class {classAndSubject.Class.Code} already have 1 slot for subject {classAndSubject.Subject.Code}." +
+                    $" Conflict with Schedule id = {classAndSubject.Id}";
             }
 
             return "";

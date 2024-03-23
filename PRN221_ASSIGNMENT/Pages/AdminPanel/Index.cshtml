@@ -2,10 +2,40 @@
 @model PRN221_ASSIGNMENT.Pages.AdminPanel.IndexModel
 @{
 }
+<style>
+    .admin {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-<div style="width:50%;margin:auto;text-align:center">
+    h2 {
+        color: darkslateblue;
+        margin-bottom: 10px;
+    }
+
+    .link {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 0 10px;
+        color: #333;
+        text-decoration: none;
+        border: 2px solid #333;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+        .link:hover {
+            background-color: #333;
+            color: #fff;
+        }
+</style>
+
+
+<div class="admin">
     <h2 style="text-align:center">Welcome Admin!</h2>
-    <a href="/Schedule/Add" style="">Admin panel</a>
-    <br />
-    <a href="#">View timetable</a>
+    <a class="link" href="/Teacher/" style="">Manage Teacher</a>
+    <a class="link" href="/Room/" style="">Manage Room</a>
+    <a class="link"  href="/Subject/" style="">Manage Subject</a>
+    <a class="link"  href="/Schedule/" style="">Manage Schedule</a>
+    <a class="link"  href="/Schedule/View">View timetable</a>
 </div>

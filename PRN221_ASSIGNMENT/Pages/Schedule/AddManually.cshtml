@@ -2,10 +2,89 @@
 @model PRN221_ASSIGNMENT.Pages.Schedule.AddManuallyModel
 @{
 }
+<style>
+    h1, h5 {
+        color: darkslateblue;
+    }
 
+    form {
+        margin-bottom: 20px;
+        text-align: center; /* Center-align the form content */
+    }
+
+    button[type="submit"] {
+        margin-top: 10px; /* Add margin to create space between the button and other form elements */
+    }
+
+    label {
+        display: inline-block;
+        width: 100px; /* Adjust the width as needed */
+        margin-right: 10px;
+        font-weight: bold;
+    }
+
+    select {
+        width: calc(100% - 120px); /* Adjust the width as needed */
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        padding: 8px 20px;
+        background-color: #3498db;
+        color: black;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+    .result {
+        margin-top: 20px;
+    }
+
+        .result p {
+            font-size: 18px;
+            margin: 0;
+        }
+
+    .success {
+        color: forestgreen;
+    }
+
+    .error {
+        color: red;
+    }
+
+    .back-button {
+        padding: 8px 16px;
+        background-color: #3498db; /* Green */
+        color: black;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none; /* Remove underlines from links */
+    }
+
+        .back-button a {
+            text-decoration: none;
+            color: black
+        }
+
+        /* Styles for the button on hover */
+        .back-button :hover {
+            background-color: #2980b9; /* Darker green */
+        }
+</style>
 <div>
-    <h1>Add Manually</h1>
-    <h3>Please fill in this form</h3>
+    <button class="back-button">
+        <a href="/Schedule/View">Back</a>
+    </button>
+    <h1>Add Schedule</h1>
+    <h5>Please fill in this form</h5>
     <form method="post">
         <label>Class</label>
         
@@ -52,7 +131,7 @@
         <button type="submit">Submit</button>
     </form>
 
-    <div>
+    <div class="result">
         @if (ViewData["Messages"] != null)
         {
             <h2>Results:</h2>
