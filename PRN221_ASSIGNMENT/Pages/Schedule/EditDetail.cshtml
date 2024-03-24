@@ -1,0 +1,139 @@
+﻿@page "{id:int?}"
+@model PRN221_ASSIGNMENT.Pages.Schedule.EditDetailModel
+@{
+}
+
+<style>
+    h1, p {
+        color: darkslateblue;
+    }
+
+    form {
+        margin-bottom: 20px;
+        text-align: center; /* Center-align the form content */
+    }
+
+    button[type="submit"] {
+        margin-top: 10px; /* Add margin to create space between the button and other form elements */
+    }
+
+    label {
+        display: inline-block;
+        width: 100px; /* Adjust the width as needed */
+        margin-right: 10px;
+        font-weight: bold;
+    }
+
+    select, input {
+        width: calc(100% - 120px); /* Adjust the width as needed */
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        padding: 8px 20px;
+        background-color: #3498db;
+        color: black;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+    .result {
+        margin-top: 20px;
+    }
+
+        .result p {
+            font-size: 18px;
+            margin: 0;
+        }
+
+    .success {
+        color: forestgreen;
+    }
+
+    .error {
+        color: red;
+    }
+
+    .back-button {
+        padding: 8px 16px;
+        background-color: #3498db; /* Green */
+        color: black;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none; /* Remove underlines from links */
+    }
+
+        .back-button a {
+            text-decoration: none;
+            color: black
+        }
+
+        /* Styles for the button on hover */
+        .back-button :hover {
+            background-color: #2980b9; /* Darker green */
+        }
+</style>
+<div>
+    <button class="back-button">
+        <a href="/Schedule/ViewDetail?id=@Model.ScheduleDetail.ScheduleId">Back</a>
+    </button>
+    <h1>Edit Schedule Detail</h1>
+    <p>Please fill in this form</p>
+    <form method="post">
+        <input type="hidden" value="@Model.ScheduleDetailId" asp-for="ScheduleDetailId" />
+        <input type="hidden" value="@Model.ScheduleDetail.ScheduleId" asp-for="ScheduleDetail.ScheduleId" />
+        <input type="hidden" value="@Model.ScheduleDetail.Id" asp-for="ScheduleDetail.Id" />
+        <label>Class</label>
+        <input type="text" disabled asp-for="ScheduleData.Class" />
+        <br />
+        <label>Subject</label>
+
+        <input type="text" disabled asp-for="ScheduleData.Subject" />
+        <br />
+        <label>Room</label>
+        <input type="text" disabled asp-for="ScheduleData.Room" />
+        <br />
+        <label>Teacher</label>
+        <input type="text" disabled asp-for="ScheduleData.Teacher" />
+        <br />
+        <label>Date</label>
+        <select asp-for="ScheduleDetail.Date">
+            @foreach (var s in Model.DateTimes)
+            {
+                <option value="@s">@s.ToString("dddd, dd/MM/yyyy")</option>
+            }
+        </select>
+        <label>Slot</label>
+        <select asp-for="ScheduleDetail.SlotId">
+            @foreach(var s in Model.SlotList)
+            {
+                <option value="@s.Id">@s.SlotName</option>
+            }
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div class="result">
+        @if (ViewData["Messages"] != null)
+        {
+            <h2>Results:</h2>
+            <ul>
+                @if (ViewData["Messages"] == "Saved successfully!")
+                {
+                    <p style="color:forestgreen">@ViewData["Messages"]</p>
+                }
+                else
+                {
+                    <p style="color:red">@ViewData["Messages"]</p>
+                }
+            </ul>
+        }
+    </div>
+</div>

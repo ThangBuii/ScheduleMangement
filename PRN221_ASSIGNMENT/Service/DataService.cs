@@ -105,7 +105,19 @@ namespace PRN221_ASSIGNMENT.Service
             return message;
         }
 
+        public string EditScheduleDetail(ScheduleDetail scheduleDetail)
+        {
+            string message = "";
 
+            message = scheduleDetailService.IsValidScheduleDetail( scheduleDetail);
+            if (message != "")
+            {
+                return message;
+            }
+            scheduleDetailService.Edit(scheduleDetail);
 
+            message = "Saved successfully!";
+            return message;
+        }
     }
 }

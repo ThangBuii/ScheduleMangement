@@ -1,0 +1,164 @@
+﻿@page "{id:int?}"
+@model PRN221_ASSIGNMENT.Pages.Schedule.ViewDetailModel
+@{
+    int i = 1;
+}
+<style>
+    .schedule-table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .schedule-table th, .schedule-table td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .schedule-table th {
+        background-color: #f2f2f2;
+    }
+
+    .schedule-table td .btn-container {
+        display: flex;
+    }
+
+        .schedule-table td .btn-container button {
+            margin-right: 5px;
+        }
+
+    .button-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 10px; /* Adjust as needed */
+    }
+
+    .add-button {
+        margin-left: 10px; /* Adjust as needed */
+    }
+
+    /* Styles for the button */
+    .button-container button {
+        padding: 8px 16px;
+        background-color: #3498db; /* Green */
+
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none; /* Remove underlines from links */
+    }
+
+        /* Styles for the button on hover */
+        .button-container button:hover {
+            background-color: #2980b9; /* Darker green */
+        }
+
+
+
+    .btn-container button {
+        padding: 8px 16px;
+        background-color: #3498db; /* Green */
+        color: black;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none; /* Remove underlines from links */
+    }
+
+    .btn1-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    /* Styles for the button on hover */
+    .btn-container button:hover {
+        background-color: #2980b9; /* Darker green */
+    }
+
+    h1 {
+        text-align: center
+    }
+
+    dl {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 5px; /* Adjust the gap as needed */
+        padding: 10px 0; /* Add padding to create space between lines */
+        border-top: 1px solid #ccc; /* Add a border to the top of each item */
+    }
+
+    dt {
+        font-weight: bold;
+        padding-right: 10px; /* Add padding to the right of the term */
+    }
+
+    dd {
+        margin-left: 0;
+    }
+
+    .small-td {
+        width: 100px; /* Adjust the width as needed */
+    }
+</style>
+
+<div>
+    <div class="btn-container">
+        <button>
+            <a href="/Schedule/View">Back</a>
+        </button>
+    </div>
+
+    <div>
+        <h2>Schedule Details</h2>
+        <dl>
+            <dt>Slot:</dt>
+            <dd>@Model.Schedule.SlotTemplate.Code</dd>
+
+            <dt>Class:</dt>
+            <dd>@Model.Schedule.Class.Code</dd>
+
+            <dt>Teacher:</dt>
+            <dd>@Model.Schedule.Teacher.Code</dd>
+
+            <dt>Subject:</dt>
+            <dd>@Model.Schedule.Subject.Code</dd>
+
+            <dt>Room:</dt>
+            <dd>@Model.Schedule.Room.Building.Code-@Model.Schedule.Room.Code</dd>
+        </dl>
+    </div>
+
+
+
+    <table class="schedule-table">
+        <tr>
+            <th>No.</th>
+            <th>Date</th>
+            <th>Slot</th>
+            <th></th>
+        </tr>
+        @foreach (var p in Model.ScheduleDetails)
+        {
+            <tr>
+                <td>@i</td>
+                <td style="color:midnightblue">@p.Date.Value.ToString("dddd, dd/MM/yyyy")</td>
+                <td>@p.Slot.SlotName</td>
+                <td class="small-td">
+                    <div class="btn-container btn1-container">
+                        <button>
+                            <a href="/Schedule/EditDetail?id=@p.Id">Edit</a>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            i++;
+        }
+    </table>
+</div>

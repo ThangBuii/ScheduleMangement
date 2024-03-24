@@ -102,6 +102,7 @@ namespace PRN221_ASSIGNMENT.Service
             return list;
         }
 
+        //Validate list schedule detail
         public string IsValidScheduleDetails(List<ScheduleDetail> schedules,Schedule schedule,int id)
         {
             ValidationService validationService = new ValidationService(_context);
@@ -109,10 +110,29 @@ namespace PRN221_ASSIGNMENT.Service
             return validationService.ValidateScheduleDetails(schedules,schedule, id);
         }
 
+        //Check xem co schedule nao da thay doi khong
         private bool IsChangedScheduleDetailExist()
         {
             if (_context.ScheduleDetails.FirstOrDefault(s => s.IsChanged == true) != null) return true;
             return false;
+        }
+
+        //Validate schedule detail
+        public string IsValidScheduleDetail(ScheduleDetail scheduleDetail)
+        {
+            ValidationService validationService = new ValidationService(_context);
+            return validationService.ValidateScheduleDetail(scheduleDetail);
+        }
+
+        //Edit schedule detail
+        public void Edit(ScheduleDetail scheduleDetail)
+        {
+            ScheduleDetail editSchedule= _context.ScheduleDetails.FirstOrDefault(s => s.Id == scheduleDetail.Id);
+            editSchedule.Date = scheduleDetail.Date;
+            editSchedule.IsChanged = true;
+            editSchedule.SlotId = scheduleDetail.SlotId;
+
+            _context.SaveChanges();
         }
     }
 }

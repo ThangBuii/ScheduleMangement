@@ -37,6 +37,13 @@
         margin-bottom: 10px; /* Adjust as needed */
     }
 
+    .btn1-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
     .add-button {
         margin-left: 10px; /* Adjust as needed */
     }
@@ -75,6 +82,10 @@
         h1{
             text-align:center
         }
+
+        .small-td{
+            width:300px
+        }
 </style>
 
 <div>
@@ -111,8 +122,8 @@
                 <td>@p.Teacher.Code</td>
                 <td>@(p.Room?.Building?.Code + "-" + p.Room?.Code)</td>
                 <td>@p.SlotTemplate?.Code</td>
-                <td>
-                    <div class="btn-container">
+                <td class="small-td">
+                    <div class="btn-container btn1-container">
                         <button>
                             <a href="/Schedule/ViewDetail?id=@p.Id">View Detail</a>
                         </button>
