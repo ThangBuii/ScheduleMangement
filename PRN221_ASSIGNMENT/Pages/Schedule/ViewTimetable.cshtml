@@ -2,3 +2,140 @@
 @model PRN221_ASSIGNMENT.Pages.Schedule.ViewTimetableModel
 @{
 }
+
+<style>
+    /* Existing styles */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        table th, table td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+        }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+        white-space: normal; /* Allow wrapping */
+    }
+
+        td a {
+            display: block; /* Convert <a> to block element */
+            margin: 4px 0; /* Remove margin */
+            padding: 4px; /* Add padding for better spacing */
+            color: darkred; /* Text color */
+            text-decoration: none; /* Remove underline */
+            background-color: lightyellow; /* Background color for all <a> tags */
+            border-bottom: 1px solid #ddd; /* Add bottom border to all <a> tags */
+        }
+
+    select {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-right: 10px; /* Add some space between selects */
+    }
+</style>
+
+
+
+
+
+<div style="display: inline-block; margin-bottom:10px">
+    <form id="filterForm" method="post" asp-page-handler="filter" style="display: inline;">
+        <label>Week:</label>
+        <select id="weekSelect" asp-for="WeekNumber">
+            @foreach (var w in Model.Weeks)
+            {
+                <option value="@w.WeekNo">@w.StartDate.ToString("dd/MM") To @w.EndDate.ToString("dd/MM")</option>
+            }
+        </select>
+        <label>Class:</label>
+        <select id="classSelect" asp-for="SelectedClass">
+            <option value="0">All Classes</option>
+            @foreach (var c in Model.Classes)
+            {
+                <option value="@c.Id">@c.Code</option>
+            }
+        </select>
+        <label>Teacher:</label>
+        <select id="teacherSelect" asp-for="SelectedTeacher">
+            <option value="0">All Teachers</option>
+            @foreach (var t in Model.Teachers)
+            {
+                <option value="@t.Id">@t.Code</option>
+            }
+        </select>
+    </form>
+
+    <form method="post" asp-page-handler="clear" style="display: inline;">
+        <button class="btn btn-secondary" type="submit">
+            Clear Selection
+        </button>
+    </form>
+</div>
+
+<table>
+
+    <th></th>
+    @foreach(var d in Model.Days)
+    {
+        <th>@d.ToString("dddd dd/MM")</th>
+    }
+    @for(int i = 0; i < 12; i++)
+    {
+        <tr>
+            <td>Slot @(i+1)</td>
+            @for(int j = 0; j < 7; j++)
+            {
+                if (Model.ScheduleList[i,j].Count > 0)
+                {
+                    <td>
+                        @foreach(var s in Model.ScheduleList[i, j])
+                        {
+                            <a href="/Schedule/ViewScheduleDetail?id=@s.Id" >Class @s.Schedule.Class.Code: @s.Schedule.Subject.Code at @s.Schedule.Room.Building.Code-@s.Schedule.Room.Code by @s.Schedule.Teacher.Code</a>
+                        }
+                    </td>
+                    
+                }
+                else
+                {
+                    <td>-</td>
+                }
+            }
+        </tr>
+    }
+
+</table>
+
+
+<script>
+    // Get the form element
+    var form = document.getElementById('filterForm');
+
+    // Get the select elements
+    var weekSelect = document.getElementById('weekSelect');
+    var classSelect = document.getElementById('classSelect');
+    var teacherSelect = document.getElementById('teacherSelect');
+
+    // Add event listeners to the select elements
+    weekSelect.addEventListener('change', function () {
+        form.submit();
+    });
+
+    classSelect.addEventListener('change', function () {
+        form.submit();
+    });
+
+    teacherSelect.addEventListener('change', function () {
+        form.submit();
+    });
+</script>

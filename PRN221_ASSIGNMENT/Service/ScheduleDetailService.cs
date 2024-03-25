@@ -1,4 +1,5 @@
-﻿using PRN221_ASSIGNMENT.DTO;
+﻿using Microsoft.EntityFrameworkCore;
+using PRN221_ASSIGNMENT.DTO;
 using PRN221_ASSIGNMENT.Models;
 
 namespace PRN221_ASSIGNMENT.Service
@@ -103,11 +104,11 @@ namespace PRN221_ASSIGNMENT.Service
         }
 
         //Validate list schedule detail
-        public string IsValidScheduleDetails(List<ScheduleDetail> schedules,Schedule schedule,int id)
+        public string IsValidScheduleDetails(List<ScheduleDetail> schedules, Schedule schedule, int id)
         {
             ValidationService validationService = new ValidationService(_context);
-            if (!IsChangedScheduleDetailExist()) return ""; 
-            return validationService.ValidateScheduleDetails(schedules,schedule, id);
+            if (!IsChangedScheduleDetailExist()) return "";
+            return validationService.ValidateScheduleDetails(schedules, schedule, id);
         }
 
         //Check xem co schedule nao da thay doi khong
@@ -127,12 +128,28 @@ namespace PRN221_ASSIGNMENT.Service
         //Edit schedule detail
         public void Edit(ScheduleDetail scheduleDetail)
         {
-            ScheduleDetail editSchedule= _context.ScheduleDetails.FirstOrDefault(s => s.Id == scheduleDetail.Id);
+            ScheduleDetail editSchedule = _context.ScheduleDetails.FirstOrDefault(s => s.Id == scheduleDetail.Id);
             editSchedule.Date = scheduleDetail.Date;
             editSchedule.IsChanged = true;
             editSchedule.SlotId = scheduleDetail.SlotId;
 
             _context.SaveChanges();
+        }
+
+        public List<ScheduleDetail> FindScheduleDetailInWeek(WeekDTO? currentWeek)
+        {
+            return _context.ScheduleDetails
+           .Include(s => s.Schedule)
+               .ThenInclude(s => s.Class)
+           .Include(s => s.Schedule)
+               .ThenInclude(s => s.Teacher)
+           .Include(s => s.Schedule)
+               .ThenInclude(s => s.Subject)
+           .Include(s => s.Schedule)
+               .ThenInclude(s => s.Room)
+                   .ThenInclude(r => r.Building)
+           .Where(s => s.Date >= currentWeek.StartDate && s.Date <= currentWeek.EndDate)
+           .ToList();
         }
     }
 }

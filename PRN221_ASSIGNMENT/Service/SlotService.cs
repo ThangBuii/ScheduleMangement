@@ -57,6 +57,30 @@ namespace PRN221_ASSIGNMENT.Service
             return date.AddDays(dayToSkip);
         }
 
+        public List<WeekDTO> FindWeekList()
+        {
+            List<WeekDTO > weeks = new List<WeekDTO>();
+            DateTime currentWeekStart = InitialDate;
+            int i = 1;
+            while (currentWeekStart <= EndDate)
+            {
+                DateTime currentWeekEnd = currentWeekStart.AddDays(6); // End of the week is 6 days later
+
+                if (currentWeekEnd > EndDate)
+                {
+                    currentWeekEnd = EndDate;
+                }
+
+                weeks.Add(new WeekDTO { StartDate = currentWeekStart, EndDate = currentWeekEnd ,WeekNo = i });
+
+                // Move to the next Monday
+                currentWeekStart = currentWeekEnd.AddDays(1);
+                i++;
+            }
+
+            return weeks;
+        }
+
         public string ConvertDateToSlot(DateTime date, int slotId)
         {
             string prefix="";
@@ -118,6 +142,28 @@ namespace PRN221_ASSIGNMENT.Service
             }
             result = prefix + suffix;
             return result;
+        }
+
+        public List<DateTime> GetDaysBetween(WeekDTO currentWeek)
+        {
+            List<DateTime> days = new List<DateTime>();
+            DateTime startDate = currentWeek.StartDate;
+            DateTime endDate = currentWeek.EndDate;
+            // Add the start date to the list
+            days.Add(startDate);
+
+            // Loop from the day after the start date until the end date
+            for (DateTime date = startDate.AddDays(1); date <= endDate; date = date.AddDays(1))
+            {
+                days.Add(date);
+            }
+
+            return days;
+        }
+
+        public DateTime FindDateBasedOnWeek(WeekDTO? currentWeek, int dayNo)
+        {
+            return currentWeek.StartDate.AddDays(dayNo);
         }
     }
 }

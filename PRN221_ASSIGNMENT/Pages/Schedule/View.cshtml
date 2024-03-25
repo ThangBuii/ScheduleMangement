@@ -86,6 +86,29 @@
         .small-td{
             width:300px
         }
+
+    .page-button {
+        padding: 8px 12px;
+        background-color: #f5f5f5;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        color: #333;
+        cursor: pointer;
+        margin-right: 5px;
+    }
+
+        /* Active button style */
+        .page-button.active {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+        }
+
+    .centered-form {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
 </style>
 
 <div>
@@ -101,6 +124,34 @@
             <a href="/Schedule/AddManually">Add</a>
         </button>
     </div>
+    <form id="filterForm" method="post" asp-page-handler="filter" style="margin-bottom:10px">
+        <input type="hidden" value="@Model.Page" asp-for="Page" />
+        <label>Class:</label>
+        <select id="classSelect" asp-for="SelectedClass">
+            <option value="0">All Classes</option>
+            @foreach (var c in Model.Classes)
+            {
+                <option value="@c.Id">@c.Code</option>
+            }
+        </select>
+        <label>Teacher:</label>
+        <select id="teacherSelect" asp-for="SelectedTeacher">
+            <option value="0">All Teachers</option>
+            @foreach (var t in Model.Teachers)
+            {
+                <option value="@t.Id">@t.Code</option>
+            }
+        </select>
+        <label>Slot:</label>
+
+        <select id="slotSelect" asp-for="SelectedSlot">
+            <option value="0">All Slots</option>
+            @foreach (var t in Model.Slots)
+            {
+                <option value="@t.Id">@t.Code</option>
+            }
+        </select>
+    </form>
 
     
     <table class="schedule-table">
@@ -130,7 +181,11 @@
                         <button>
                             <a href="/Schedule/Edit?id=@p.Id">Edit</a>
                         </button>
-                        <form method="post">
+                        <form method="post" asp-page-handler="delete">
+                            <input type="hidden" value="@Model.SelectedClass" asp-for="SelectedClass" />
+                            <input type="hidden" value="@Model.SelectedTeacher" asp-for="SelectedTeacher" />
+                            <input type="hidden" value="@Model.SelectedSlot" asp-for="SelectedSlot" />
+                            <input type="hidden" value="@Model.Page" asp-for="Page"/>
                             <button type="submit" name="ScheduleId" value="@p.Id">Delete</button>
                         </form>
                     </div>
@@ -138,5 +193,49 @@
             </tr>
         }
     </table>
+    @if(Model.TotalPages > 1)
+    {
+        <div class="centered-form">
+            <form method="post" asp-page-handler="Paging">
+                <input type="hidden" value="@Model.SelectedClass" asp-for="SelectedClass" />
+                <input type="hidden" value="@Model.SelectedTeacher" asp-for="SelectedTeacher" />
+                <input type="hidden" value="@Model.SelectedSlot" asp-for="SelectedSlot" />
+                <button type="submit" name="Page" value="1" class="page-button">First</button>
+                <button type="submit" name="Page" value="@Math.Max(Model.Page - 1, 1)" class="page-button">Previous</button>
+
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <button type="submit" name="Page" value="@i" class="page-button @(i == Model.Page ? "active" : "")">@i</button>
+                }
+
+                <button type="submit" name="Page" value="@Math.Min(Model.Page + 1, Model.TotalPages)" class="page-button">Next</button>
+                <button type="submit" name="Page" value="@Model.TotalPages" class="page-button">Last</button>
+            </form>
+        </div>
+    }
+    
+
 </div>
 
+<script>
+    // Get the form element
+    var form = document.getElementById('filterForm');
+
+    // Get the select elements
+    var slotSelect = document.getElementById('slotSelect');
+    var classSelect = document.getElementById('classSelect');
+    var teacherSelect = document.getElementById('teacherSelect');
+
+    // Add event listeners to the select elements
+    slotSelect.addEventListener('change', function () {
+        form.submit();
+    });
+
+    classSelect.addEventListener('change', function () {
+        form.submit();
+    });
+
+    teacherSelect.addEventListener('change', function () {
+        form.submit();
+    });
+</script>

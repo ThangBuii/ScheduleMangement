@@ -1,8 +1,7 @@
 ﻿@page "{id:int?}"
-@model PRN221_ASSIGNMENT.Pages.Schedule.EditDetailModel
+@model PRN221_ASSIGNMENT.Pages.Schedule.ViewScheduleDetailModel
 @{
 }
-
 <style>
     h1, p {
         color: darkslateblue;
@@ -82,10 +81,9 @@
 </style>
 <div>
     <button class="back-button">
-        <a href="/Schedule/ViewScheduleDetail?id=@Model.ScheduleDetail.Id">Back</a>
+        <a href="/Schedule/ViewTimetable">Back</a>
     </button>
-    <h1>Edit Schedule Detail</h1>
-    <p>Please fill in this form</p>
+    <h1>Schedule Detail</h1>
     <form method="post">
         <input type="hidden" value="@Model.ScheduleDetailId" asp-for="ScheduleDetailId" />
         <input type="hidden" value="@Model.ScheduleDetail.ScheduleId" asp-for="ScheduleDetail.ScheduleId" />
@@ -104,36 +102,12 @@
         <input type="text" disabled asp-for="ScheduleData.Teacher" />
         <br />
         <label>Date</label>
-        <select asp-for="ScheduleDetail.Date">
-            @foreach (var s in Model.DateTimes)
-            {
-                <option value="@s">@s.ToString("dddd, dd/MM/yyyy")</option>
-            }
-        </select>
+        <input type="text" disabled asp-for="ScheduleDetail.Date" value="@Model.ScheduleDetail.Date.Value.ToString("dddd dd/MM")" />
+        
         <label>Slot</label>
-        <select asp-for="ScheduleDetail.SlotId">
-            @foreach(var s in Model.SlotList)
-            {
-                <option value="@s.Id">@s.SlotName</option>
-            }
-        </select>
-        <button type="submit">Submit</button>
+        <input type="text" disabled asp-for="ScheduleDetail.Slot.SlotName" />
     </form>
-
-    <div class="result">
-        @if (ViewData["Messages"] != null)
-        {
-            <h2>Results:</h2>
-            <ul>
-                @if (ViewData["Messages"] == "Saved successfully!")
-                {
-                    <p style="color:forestgreen">@ViewData["Messages"]</p>
-                }
-                else
-                {
-                    <p style="color:red">@ViewData["Messages"]</p>
-                }
-            </ul>
-        }
-    </div>
+    <button class="back-button">
+        <a href="/Schedule/EditDetail?id=@Model.ScheduleDetail.Id">Edit</a>
+    </button>
 </div>
