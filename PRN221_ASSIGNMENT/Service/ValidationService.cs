@@ -50,7 +50,7 @@ namespace PRN221_ASSIGNMENT.Service
                                        .FirstOrDefault(s => s.SlotTemplateId == schedule.SlotTemplateId && s.ClassId == schedule.ClassId);
             if (classAndSlot != null && classAndSlot.Id != existedId)
             {
-                return $"Data error: Class {classAndSlot.Class.Code} đã được sử dụng vào slot {classAndSlot.SlotTemplate.Code}" +
+                return $"Data error: Class {classAndSlot.Class.Code} đã có lịch vào slot {classAndSlot.SlotTemplate.Code}" +
                     $" Check Schedule Id = {classAndSlot.Id}";
             }
             return "";
